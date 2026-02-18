@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Forzar color de texto blanco en los botones */
+.swal2-styled.swal2-confirm, 
+.swal2-styled.swal2-cancel {
+  color: white !important;
+}
+
+/* Darle un poco de redondeado estilo Tailwind (rounded-lg) */
+.swal2-popup {
+  border-radius: 0.75rem !important;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #2563eb !important; /* blue-600 */
+  border-radius: 0.5rem !important;
+}
+
+.swal2-styled.swal2-cancel {
+  background-color: #ef4444 !important; /* red-500 */
+  border-radius: 0.5rem !important;
+}
