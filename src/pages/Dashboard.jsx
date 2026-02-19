@@ -49,7 +49,7 @@ export default function Dashboard() {
                 <StatCard
                     title="Monto Total Histórico"
                     // Usamos el monto total que viene del nuevo endpoint
-                    value={formatCurrency(globalStats.totalAmount)}
+                    value={formatCurrency((quotations || []).reduce((acc, curr) => acc + Number(curr.total), 0))}
                     icon={Banknote}
                     color="bg-green-500"
                 />
