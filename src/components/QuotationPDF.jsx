@@ -208,7 +208,7 @@ export const QuotationDocument = ({ quotation }) => {
         {/* Footer */}
         <View style={styles.footerFixed} fixed>
           <Text style={{ borderTopWidth: 1, borderTopColor: '#eee', paddingTop: 8, marginBottom: 4 }}>
-            Diagonal 47 56-45 zona 16 VH4 Condominio Villas Suiza Casa 40. Teléfono 22195717.
+            Avenida Hincapié 3-49 zona 13
           </Text>
           <Text render={({ pageNumber, totalPages }) => `Página: ${pageNumber} / ${totalPages}`} />
         </View>
