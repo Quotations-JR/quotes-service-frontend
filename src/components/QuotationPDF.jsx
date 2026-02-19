@@ -208,7 +208,7 @@ export const QuotationDocument = ({ quotation }) => {
         {/* Footer */}
         <View style={styles.footerFixed} fixed>
           <Text style={{ borderTopWidth: 1, borderTopColor: '#eee', paddingTop: 8, marginBottom: 4 }}>
-            Avenida Hincapié 3-49 zona 13
+            Avenida Hincapié 3-49 zona 13 | Tel. 2234-7254
           </Text>
           <Text render={({ pageNumber, totalPages }) => `Página: ${pageNumber} / ${totalPages}`} />
         </View>
