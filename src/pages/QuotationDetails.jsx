@@ -62,9 +62,8 @@ export default function QuotationDetails() {
                 <div className="bg-gray-50 px-8 py-6 border-b border-gray-200">
                     <div className="flex justify-between items-center">
                         <div>
-                            {/* Usamos el correlativo aquí */}
                             <h1 className="text-3xl font-extrabold text-gray-900">
-                                {formatQuotationId(quotation.id)}
+                                {formatQuotationId(quotation.correlativo)}
                             </h1>
                             <p className="text-gray-500 mt-1 font-medium">
                                 Emitida el {formatDate(quotation.createdAt)}

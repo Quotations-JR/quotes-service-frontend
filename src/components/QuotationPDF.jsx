@@ -12,21 +12,59 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica'
   },
 
-  // --- ENCABEZADO CORREGIDO ---
+  // --- ENCABEZADO MÁS GRANDE Y ESPACIADO ---
   headerContainer: {
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: 0,
     width: '100%',
     justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
-  infoSection: { width: '65%' },
-  logoSection: { width: '35%', alignItems: 'flex-end' },
+  infoSection: {
+    width: '70%',
+  },
+  logoSection: {
+    width: '30%',
+    alignItems: 'flex-end'
+  },
 
-  rowInfo: { flexDirection: 'row', marginBottom: 4 },
-  label: { fontWeight: 'bold', width: 65, fontSize: 10 },
-  value: { flex: 1, fontSize: 10 },
-  noLabel: { fontWeight: 'bold', width: 65, fontSize: 10, color: 'red' },
-  noValue: { flex: 1, fontSize: 10, color: 'red', fontWeight: 'bold' },
+  rowInfo: {
+    flexDirection: 'row',
+    marginBottom: 6,
+    alignItems: 'center'
+  },
+
+  // Etiquetas más anchas y legibles
+  label: {
+    fontWeight: 'bold',
+    width: 80,
+    fontSize: 11,
+  },
+  value: {
+    flex: 1,
+    fontSize: 11,
+  },
+
+  // Estilo destacado para el número de cotización
+  noLabel: {
+    fontWeight: 'bold',
+    width: 80,
+    fontSize: 14,
+    color: 'red'
+  },
+  noValue: {
+    flex: 1,
+    fontSize: 14,
+    color: 'red',
+    fontWeight: 'bold'
+  },
+
+  // Estilo para la paginación dentro del header
+  pageText: {
+    fontSize: 10,
+    color: '#444',
+    fontWeight: 'bold'
+  },
 
   // --- TABLA REESTRUCTURADA ---
   table: {
@@ -36,45 +74,57 @@ const styles = StyleSheet.create({
   tableRow: {
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: '#ee6c31',
+    borderBottomColor: 'red',
     borderLeftWidth: 1,
-    borderLeftColor: '#ee6c31',
+    borderLeftColor: 'red',
     borderRightWidth: 1,
-    borderRightColor: '#ee6c31',
+    borderRightColor: 'red',
     minHeight: 22,
     wrap: false,
-    alignItems: 'stretch' // Importante para que los bordes internos lleguen hasta abajo
+    alignItems: 'stretch'
   },
   tableHeader: {
-    backgroundColor: '#ff4d00',
+    backgroundColor: 'red',
     color: 'white',
     fontWeight: 'bold',
     height: 25,
     borderTopWidth: 1,
-    borderTopColor: '#ee6c31',
+    borderTopColor: 'red',
   },
 
-  // ANCHOS DE COLUMNA DEFINIDOS (Para evitar solapamiento)
+  // --- ANCHOS DE COLUMNA ---
   colCant: {
-    width: '15%',
+    width: '10%',
     borderRightWidth: 1,
-    borderRightColor: '#ee6c31',
+    borderRightColor: 'red',
     justifyContent: 'center',
     textAlign: 'center'
   },
   colDesc: {
-    width: '55%',
+    width: '45%',
     borderRightWidth: 1,
-    borderRightColor: '#ee6c31',
+    borderRightColor: 'red',
     paddingLeft: 5,
     justifyContent: 'center'
+  },
+  colDescrip: { // Estilo para el texto de descripción
+    fontSize: 10,
   },
   colUni: {
     width: '15%',
     borderRightWidth: 1,
-    borderRightColor: '#ee6c31',
+    borderRightColor: 'red',
     textAlign: 'center',
     justifyContent: 'center'
+  },
+  colDesc_Porcentaje: {
+    width: '15%',
+    borderRightWidth: 1,
+    borderRightColor: 'red',
+    textAlign: 'center',
+    justifyContent: 'center',
+    //color: '#ea580c',
+    fontWeight: 'bold'
   },
   colTot: {
     width: '15%',
@@ -89,12 +139,13 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   totalLabelBox: {
-    backgroundColor: '#ff4d00',
+    backgroundColor: 'red',
     width: '15%',
     padding: 5,
+    borderTopWidth: 1,
     borderLeftWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#ee6c31',
+    borderColor: 'red',
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'right'
@@ -102,10 +153,11 @@ const styles = StyleSheet.create({
   totalValueBox: {
     width: '15%',
     padding: 5,
+    borderTopWidth: 1,
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#ee6c31',
+    borderColor: 'red',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
@@ -124,73 +176,88 @@ const styles = StyleSheet.create({
 });
 
 export const QuotationDocument = ({ quotation }) => {
-  const { client, items, total, id, createdAt, elaboratedBy } = quotation;
+  const { client, items, total, correlativo, createdAt, elaboratedBy } = quotation;
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        
+
         {/* --- ENCABEZADO QUE SE REPITE --- */}
         <View style={styles.headerContainer} fixed>
           <View style={styles.infoSection}>
-            <View style={styles.rowInfo}>
+            {/* CORRELATIVO DESTACADO */}
+            <View style={[styles.rowInfo, { marginBottom: 10 }]}>
               <Text style={styles.noLabel}>No.</Text>
-              <Text style={styles.noValue}>{formatQuotationId(id)}</Text>
+              <Text style={styles.noValue}>{formatQuotationId(correlativo)}</Text>
             </View>
+
             <View style={styles.rowInfo}>
               <Text style={styles.label}>Cliente:</Text>
               <Text style={styles.value}>{client?.name}</Text>
             </View>
+
             <View style={styles.rowInfo}>
               <Text style={styles.label}>Fecha:</Text>
               <Text style={styles.value}>{formatDate(createdAt)}</Text>
             </View>
+
             <View style={styles.rowInfo}>
               <Text style={styles.label}>Dirección:</Text>
               <Text style={styles.value}>{client?.address}</Text>
             </View>
+
             <View style={styles.rowInfo}>
               <Text style={styles.label}>NIT:</Text>
               <Text style={styles.value}>{client?.taxId}</Text>
             </View>
-            
-            {/* --- PAGINACIÓN JUNTO AL NIT --- */}
-            <View style={[styles.rowInfo, { marginTop: 2 }]}>
-              <Text style={[styles.label, { color: '#666' }]}>Página:</Text>
-              <Text 
-                style={[styles.value, { color: '#666' }]} 
-                render={({ pageNumber, totalPages }) => `${pageNumber} de ${totalPages}`} 
+
+            {/* PAGINACIÓN INTEGRADA */}
+            <View style={[styles.rowInfo, { marginTop: 4 }]}>
+              <Text style={[styles.label, styles.pageText]}>Página:</Text>
+              <Text
+                style={[styles.value, styles.pageText]}
+                render={({ pageNumber, totalPages }) => `${pageNumber} de ${totalPages}`}
               />
             </View>
           </View>
 
+          {/* LOGO MÁS GRANDE */}
           <View style={styles.logoSection}>
-            <Image src={logo} style={{ width: 120 }} />
+            <Image src={logo} style={{ width: 140 }} />
           </View>
         </View>
 
-        {/* --- TABLA (El header de la tabla ya tiene 'fixed') --- */}
+        {/* --- TABLA --- */}
         <View style={styles.table}>
           <View style={[styles.tableRow, styles.tableHeader]} fixed>
-            <View style={styles.colCant}><Text>Cantidad</Text></View>
+            <View style={styles.colCant}><Text>Cant.</Text></View>
             <View style={styles.colDesc}><Text>Descripción</Text></View>
-            <View style={styles.colUni}><Text>P.Unitario</Text></View>
-            <View style={styles.colTot}><Text>P.Total</Text></View>
+            <View style={styles.colUni}><Text>P. Unitario</Text></View>
+            <View style={styles.colDesc_Porcentaje}><Text>Desc. %</Text></View>
+            <View style={styles.colTot}><Text>P. Total</Text></View>
           </View>
 
           {items.map((item, i) => (
             <View style={styles.tableRow} key={i} wrap={false}>
-              <View style={styles.colCant}><Text>{item.quantity}</Text></View>
-              <View style={styles.colDesc}>
-                <Text>{item.description}</Text>
-                {item.discountPercent > 0 && (
-                  <Text style={{ fontSize: 7, color: '#ea580c', marginTop: 2 }}>
-                    Descuento aplicado: {item.discountPercent}%
-                  </Text>
-                )}
+              <View style={styles.colCant}>
+                <Text>{item.quantity}</Text>
               </View>
-              <View style={styles.colUni}><Text>{formatCurrency(item.unitPrice)}</Text></View>
-              <View style={styles.colTot}><Text>{formatCurrency(item.total)}</Text></View>
+
+              <View style={styles.colDesc}>
+                <Text style={styles.colDescrip}>{item.description}</Text>
+              </View>
+
+              <View style={styles.colUni}>
+                <Text>{formatCurrency(item.unitPrice)}</Text>
+              </View>
+
+              <View style={styles.colDesc_Porcentaje}>
+                <Text>{item.discountPercent > 0 ? `${item.discountPercent}%` : '-'}</Text>
+              </View>
+
+              <View style={styles.colTot}>
+                <Text>{formatCurrency(item.total)}</Text>
+              </View>
             </View>
           ))}
         </View>

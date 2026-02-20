@@ -90,7 +90,7 @@ export default function Dashboard() {
                                 quotations.map((q) => (
                                     <tr key={q.id} className="hover:bg-gray-50 transition-colors">
                                         <td className="px-6 py-4 font-bold text-blue-600">
-                                            {formatQuotationId(q.id)}
+                                            {formatQuotationId(q.correlativo)}
                                         </td>
                                         <td className="px-6 py-4 text-gray-700">
                                             {q.client?.name || "Sin Nombre"}

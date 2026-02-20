@@ -40,10 +40,10 @@ export default function Quotations() {
         }
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (quotation) => {
         const result = await Swal.fire({
             title: '¿Estás seguro?',
-            text: `Vas a eliminar la cotización ${formatQuotationId(id)}. Esta acción no se puede deshacer.`,
+            text: `Vas a eliminar la cotización ${formatQuotationId(quotation.correlativo)}. Esta acción no se puede deshacer.`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#ef4444',
@@ -54,8 +54,8 @@ export default function Quotations() {
 
         if (result.isConfirmed) {
             try {
-                await quotationService.delete(id);
-                setQuotations(prevQuotations => prevQuotations.filter(q => q.id !== id));
+                await quotationService.delete(quotation.id);
+                setQuotations(prevQuotations => prevQuotations.filter(q => q.id !== quotation.id));
                 Swal.fire('¡Eliminado!', 'La cotización ha sido borrada.', 'success');
             } catch (error) {
                 console.error(error);
@@ -117,7 +117,7 @@ export default function Quotations() {
                                 quotations.map((q) => (
                                     <tr key={q.id} className="hover:bg-blue-50/50 transition-colors group">
                                         <td className="px-6 py-4 text-blue-600 font-mono font-bold">
-                                            {formatQuotationId(q.id)}
+                                            {formatQuotationId(q.correlativo)}
                                         </td>
                                         <td className="px-6 py-4 font-medium text-gray-700">
                                             {q.client?.name || "Cliente no disponible"}
@@ -145,7 +145,7 @@ export default function Quotations() {
                                                     <Pencil size={18} />
                                                 </Link>
                                                 <button
-                                                    onClick={() => handleDelete(q.id)}
+                                                    onClick={() => handleDelete(q)}
                                                     className="p-2 text-gray-400 hover:bg-white hover:text-red-600 rounded-lg shadow-sm border border-transparent hover:border-gray-200 transition-all"
                                                     title="Eliminar"
                                                 >

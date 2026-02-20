@@ -1,9 +1,9 @@
 /**
  * Convierte un ID numérico en un correlativo tipo CO-00001
  */
-export const formatQuotationId = (id) => {
-  if (!id) return 'CO00000';
-  return `CO${String(id).padStart(5, '0')}`;
+export const formatQuotationId = (num) => {
+  if (!num) return 'CO00000';
+  return `CO${String(num).padStart(5, '0')}`;
 };
 
 /**
