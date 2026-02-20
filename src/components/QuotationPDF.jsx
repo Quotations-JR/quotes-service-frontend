@@ -129,9 +129,9 @@ export const QuotationDocument = ({ quotation }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-
-        {/* Encabezado */}
-        <View style={styles.headerContainer}>
+        
+        {/* --- ENCABEZADO QUE SE REPITE --- */}
+        <View style={styles.headerContainer} fixed>
           <View style={styles.infoSection}>
             <View style={styles.rowInfo}>
               <Text style={styles.noLabel}>No.</Text>
@@ -153,6 +153,15 @@ export const QuotationDocument = ({ quotation }) => {
               <Text style={styles.label}>NIT:</Text>
               <Text style={styles.value}>{client?.taxId}</Text>
             </View>
+            
+            {/* --- PAGINACIÓN JUNTO AL NIT --- */}
+            <View style={[styles.rowInfo, { marginTop: 2 }]}>
+              <Text style={[styles.label, { color: '#666' }]}>Página:</Text>
+              <Text 
+                style={[styles.value, { color: '#666' }]} 
+                render={({ pageNumber, totalPages }) => `${pageNumber} de ${totalPages}`} 
+              />
+            </View>
           </View>
 
           <View style={styles.logoSection}>
@@ -160,7 +169,7 @@ export const QuotationDocument = ({ quotation }) => {
           </View>
         </View>
 
-        {/* Tabla Corregida */}
+        {/* --- TABLA (El header de la tabla ya tiene 'fixed') --- */}
         <View style={styles.table}>
           <View style={[styles.tableRow, styles.tableHeader]} fixed>
             <View style={styles.colCant}><Text>Cantidad</Text></View>
@@ -186,8 +195,8 @@ export const QuotationDocument = ({ quotation }) => {
           ))}
         </View>
 
-        {/* Cierre y Totales */}
-        <View wrap={false} style={{ width: '100%', marginTop: 1 }}>
+        {/* --- CIERRE Y TOTALES --- */}
+        <View wrap={false} style={{ width: '100%', marginTop: 10 }}>
           <View style={styles.totalContainer}>
             <View style={styles.totalLabelBox}><Text>TOTAL.</Text></View>
             <View style={styles.totalValueBox}>
@@ -205,12 +214,11 @@ export const QuotationDocument = ({ quotation }) => {
           </View>
         </View>
 
-        {/* Footer */}
+        {/* --- FOOTER (Sin la numeración) --- */}
         <View style={styles.footerFixed} fixed>
-          <Text style={{ borderTopWidth: 1, borderTopColor: '#eee', paddingTop: 8, marginBottom: 4 }}>
+          <Text style={{ borderTopWidth: 1, borderTopColor: '#eee', paddingTop: 8 }}>
             Avenida Hincapié 3-49 zona 13 | Tel. 2234-7254
           </Text>
-          <Text render={({ pageNumber, totalPages }) => `Página: ${pageNumber} / ${totalPages}`} />
         </View>
 
       </Page>
