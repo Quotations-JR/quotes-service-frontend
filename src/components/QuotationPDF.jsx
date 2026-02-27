@@ -40,18 +40,22 @@ const styles = StyleSheet.create({
   value: {
     flex: 1,
     fontSize: 11,
+    textAlign: 'center',
+    //color: '#316DBD'
+    color: '#0070C0'
   },
   noLabel: {
     fontWeight: 'bold',
     width: 80,
-    fontSize: 14,
+    fontSize: 11,
     color: 'red'
   },
   noValue: {
     flex: 1,
     fontSize: 14,
     color: 'red',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'right'
   },
   pageText: {
     fontSize: 10,
@@ -156,7 +160,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 8,
     color: '#666',
-  }
+  },
+
+  valueFooter: {
+    flex: 1,
+    fontSize: 11,
+  },
 });
 
 export const QuotationDocument = ({ quotation }) => {
@@ -258,10 +267,10 @@ export const QuotationDocument = ({ quotation }) => {
           </View>
 
           <View style={{ marginTop: 15 }}>
-            <View style={styles.rowInfo}><Text style={styles.label}>Garantía:</Text><Text style={styles.value}>{quotation.warranty}</Text></View>
-            <View style={styles.rowInfo}><Text style={styles.label}>Entrega:</Text><Text style={styles.value}>{quotation.deliveryTime}</Text></View>
-            <View style={styles.rowInfo}><Text style={styles.label}>Forma pago:</Text><Text style={styles.value}>{quotation.paymentMethod}</Text></View>
-            <View style={styles.rowInfo}><Text style={styles.label}>Elaborado:</Text><Text style={styles.value}>{elaboratedBy}</Text></View>
+            <View style={styles.rowInfo}><Text style={styles.label}>Garantía:</Text><Text style={styles.valueFooter}>{quotation.warranty}</Text></View>
+            <View style={styles.rowInfo}><Text style={styles.label}>Entrega:</Text><Text style={styles.valueFooter}>{quotation.deliveryTime}</Text></View>
+            <View style={styles.rowInfo}><Text style={styles.label}>Forma pago:</Text><Text style={styles.valueFooter}>{quotation.paymentMethod}</Text></View>
+            <View style={styles.rowInfo}><Text style={styles.label}>Elaborado:</Text><Text style={styles.valueFooter}>{elaboratedBy}</Text></View>
             <Text style={{ marginTop: 10, fontSize: 9, lineHeight: 1.4 }}>{quotation.observations}</Text>
           </View>
         </View>
