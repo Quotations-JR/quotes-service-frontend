@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
   label: {
     fontWeight: 'bold',
     width: 80,
-    fontSize: 11,
+    fontSize: 13,
   },
   value: {
     flex: 1,
-    fontSize: 11,
+    fontSize: 13,
     textAlign: 'center',
-    //color: '#316DBD'
+    fontWeight: 'bold',
     color: '#0070C0'
   },
   noLabel: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   noValue: {
     flex: 1,
-    fontSize: 14,
+    fontSize: 11,
     color: 'red',
     fontWeight: 'bold',
     textAlign: 'right'
@@ -60,7 +60,8 @@ const styles = StyleSheet.create({
   pageText: {
     fontSize: 10,
     color: '#444',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'left',
   },
 
   // --- TABLA REESTRUCTURADA (4 COLUMNAS) ---
