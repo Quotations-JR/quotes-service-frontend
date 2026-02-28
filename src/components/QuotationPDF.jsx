@@ -179,7 +179,7 @@ export const QuotationDocument = ({ quotation }) => {
         {/* --- ENCABEZADO QUE SE REPITE --- */}
         <View style={styles.headerContainer} fixed>
           <View style={styles.infoSection}>
-            <View style={[styles.rowInfo, { marginBottom: 10 }]}>
+            <View style={[styles.rowInfo, { marginBottom: 30 }]}>
               <Text style={styles.noLabel}>No.</Text>
               <Text style={styles.noValue}>{formatQuotationId(correlativo)}</Text>
             </View>
